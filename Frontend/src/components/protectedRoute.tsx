@@ -1,26 +1,23 @@
-import { Navigate, Outlet, useLocation } from "react-router-dom"
-import { useAppData } from "../context/AppContext"
+import { Navigate, Outlet, useLocation } from "react-router-dom";
+import { useAppData } from "../context/AppContext";
 
 const ProtectedRoute = () => {
+  const { isAuth, loading, user } = useAppData();
+  const location = useLocation();
 
-    const {isAuth, loading, user} = useAppData()
+  if (loading) return null;
 
-    if(loading) return null
+  if (!isAuth) return null;
 
+  if (!user?.role && location.pathname !== "/select-role") {
+    return <Navigate to={"/login"} replace />;
+  }
 
-    const location = useLocation()
+  if (user?.role && location.pathname === "/select-role") {
+    return <Navigate to={"/"} replace />;
+  }
 
-    if(!isAuth) return null 
+  return <Outlet />;
+};
 
-    if(user?.role === null && location.pathname !== "/select-role"){
-        return <Navigate to={"/login"} replace/>
-    }
-
-    if(user?.role !== null && location.pathname === "/select-role"){
-        return <Navigate to={"/"} replace/>
-    }
-
-  return <Outlet/>
-}
-
-export default ProtectedRoute
+export default ProtectedRoute;
