@@ -6,6 +6,7 @@ import SelectRole from "./pages/SelectRole";
 import PublicRoute from "./components/PublicRoute";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Navbar from "./components/Navbar";
+import Account from "./pages/Account";
 
 
 const App = () => {
@@ -20,6 +21,7 @@ const App = () => {
           <Route element={<ProtectedRoute />}>
             <Route path="/" element={<Home />} />
             <Route path="/select-role" element={<SelectRole />} />
+            <Route path="/account" element={<Account/>}/>
           </Route>
         </Routes>
         <Toaster />
