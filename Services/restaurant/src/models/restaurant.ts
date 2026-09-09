@@ -1,21 +1,22 @@
-import mongoose, { Schema, Document } from "mongoose";
+import mongoose, { Schema, Document, Types } from "mongoose";
 
 export interface IRestaurant extends Document {
   name: string;
   description?: string;
   image: string;
-  ownerId: string;
-  phone: number;
+  ownerId: Types.ObjectId;
+  phone: string;
   isVerified: boolean;
 
   autoLocation: {
     type: "Point";
-    coordinates: [number, number]; // [longitude , latitude]
+    coordinates: [number, number];
     formattedAddress: string;
   };
 
   isOpen: boolean;
   createdAt: Date;
+  updatedAt: Date;
 }
 
 const schema = new Schema<IRestaurant>(
@@ -31,26 +32,24 @@ const schema = new Schema<IRestaurant>(
       required: true,
     },
     ownerId: {
-      type: String,
+      type: Schema.Types.ObjectId,
+      ref: "User",
       required: true,
     },
     phone: {
-      type: Number,
+      type: String,
       required: true,
     },
-
     isVerified: {
       type: Boolean,
-      required: true,
+      default: false,
     },
-
     autoLocation: {
       type: {
         type: String,
         enum: ["Point"],
         required: true,
       },
-
       coordinates: {
         type: [Number],
         required: true,
@@ -59,7 +58,6 @@ const schema = new Schema<IRestaurant>(
         type: String,
       },
     },
-
     isOpen: {
       type: Boolean,
       default: false,
@@ -69,6 +67,7 @@ const schema = new Schema<IRestaurant>(
     timestamps: true,
   },
 );
+
 schema.index({ autoLocation: "2dsphere" });
 
 export default mongoose.model<IRestaurant>("Restaurant", schema);

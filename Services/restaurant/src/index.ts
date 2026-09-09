@@ -6,16 +6,11 @@ import cors from "cors";
 dotenv.config();
 
 const app = express();
-app.use(
-  cors({
-    origin: "http://localhost:5173", 
-    credentials: true,
-  })
-);
+
 app.use(express.json());
 
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5001;
 
 connectDB().then(() => {
   app.listen(PORT, () => {
