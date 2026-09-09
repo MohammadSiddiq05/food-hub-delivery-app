@@ -14,12 +14,12 @@
 //         b : undefined
 //     }
 // }
-// // console.log(a.?b.c?.d??"Siddiq")
+// console.log(obj.a?.b?.c?.d??"Siddiq")
 
-// // console.log(Boolean([]))
-// // console.log(Boolean({}))
-// // console.log(Boolean(""))
-// // console.log(Boolean(0))
+// console.log(Boolean([]))
+// console.log(Boolean({}))
+// console.log(Boolean(""))
+// console.log(Boolean(0))
 
 // console.log("siddiq" - 10)
 // console.log("siddiq" * 10)
@@ -60,21 +60,25 @@
 // console.log(arr.map((x) => x === 5))
 // console.log(arr.map((x) => x > 5))
 
-let str = "siddiq";
+// let str = "siddiq";
 
-let vowels = ["a", "e", "i", "o", "u"];
-let countVowels = [];
+// let vowels = ["a", "e", "i", "o", "u"];
+// let countVowels = [];
 
-const vowelsCount = (str) => {
-  let count = 0;
-  for (let i = 0; i < str.length; i++) {
-    if (vowels.includes(str[i])) {
-      countVowels.push(str[i]);
-      count++;
-    }
-  }
-  return count;
-};
+// const vowelsCount = (str) => {
+//   let count = 0;
+//   for (let i = 0; i < str.length; i++) {
+//     if (vowels.includes(str[i])) {
+//       countVowels.push(str[i]);
+//       count++;
+//     }
+//   }
+//   return count;
+// };
 
-console.log(vowelsCount(str));
-console.log(countVowels);
+// console.log(vowelsCount(str));
+// console.log(countVowels);
+
+let arr = [1, 3, 4, 5, 5, 56]
+
+console.log(arr.reduce(1,3,1))
