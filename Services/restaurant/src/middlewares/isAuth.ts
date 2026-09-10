@@ -7,6 +7,7 @@ export interface IUser {
   email: String;
   image: String;
   role: String;
+  restaurantId : string
 }
 
 export interface AuthenticatedRequest extends Request {
