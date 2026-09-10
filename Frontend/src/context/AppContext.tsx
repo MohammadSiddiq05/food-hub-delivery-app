@@ -83,11 +83,10 @@ export const AppContextProvider = ({ children }: AppContextProviderProps) => {
           setCity("Failed to load");
           console.log(error);
         } finally {
-          setLoadingLocation(false); // ✅ ye bhi missing tha
+          setLoadingLocation(false); 
         }
       },
       (error) => {
-        // ✅ Error callback add kiya
         console.log("Geolocation error:", error);
         setCity("Location permission denied");
         setLoadingLocation(false);

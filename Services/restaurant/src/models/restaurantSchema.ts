@@ -4,7 +4,7 @@ export interface IRestaurant extends Document {
   name: string;
   description?: string;
   image: string;
-  ownerId: Types.ObjectId;
+  ownerId: string;
   phone: string;
   isVerified: boolean;
 
@@ -32,7 +32,7 @@ const schema = new Schema<IRestaurant>(
       required: true,
     },
     ownerId: {
-      type: Schema.Types.ObjectId,
+      type: String,
       ref: "User",
       required: true,
     },
