@@ -31,7 +31,6 @@ const App = () => {
             <Route path="/account" element={<Account/>}/>
           </Route>
         </Routes>
-        <Toaster />
       </BrowserRouter>
     </>
   );

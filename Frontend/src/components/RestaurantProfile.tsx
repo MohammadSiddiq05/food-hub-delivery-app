@@ -21,7 +21,7 @@ const RestaurantProfile = ({ restaurant, isSeller, onUpdate }: props) => {
   const toggleOpenStatus = async () => {
     try {
       const { data } = await axios.put(
-        `${restaurantService}/api/restaurant/service`,
+        `${restaurantService}/api/restaurant/status`,
         {
           status: !isOpen,
         },
@@ -55,8 +55,9 @@ const RestaurantProfile = ({ restaurant, isSeller, onUpdate }: props) => {
           },
         },
       );
-      onUpdate(data.restaurant);
       toast.success(data.message);
+      onUpdate(data.restaurant);
+      setEditMode(false)
     } catch (error: any) {
       console.log(error);
       toast.error("Failed to update");
@@ -135,7 +136,7 @@ const RestaurantProfile = ({ restaurant, isSeller, onUpdate }: props) => {
             {isSeller && (
               <button
                 onClick={toggleOpenStatus}
-                className={`rounded-lg px-4 py-1.5 text-sm font-medium text-white ${isOpen ? "bg-green-600 hover:bg-green-700" : "bg-red-600 hover:bg-red-700"}`}
+                className={`rounded-lg px-4 py-1.5 text-sm font-medium text-white ${isOpen ? "bg-red-600 hover:bg-red-700" : "bg-green-600 hover:bg-green-700"}`}
               >
                 {isOpen ? "Close Restaurant" : "Open Restaurant"}
               </button>

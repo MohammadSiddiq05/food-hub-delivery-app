@@ -8,6 +8,7 @@ import {
 } from "react";
 import { authService } from "../main";
 import type { AppContextType, LocationData, User } from "../types";
+import { Toaster } from "react-hot-toast";
 
 interface AppContextProviderProps {
   children: ReactNode;
@@ -83,7 +84,7 @@ export const AppContextProvider = ({ children }: AppContextProviderProps) => {
           setCity("Failed to load");
           console.log(error);
         } finally {
-          setLoadingLocation(false); 
+          setLoadingLocation(false);
         }
       },
       (error) => {
@@ -109,6 +110,7 @@ export const AppContextProvider = ({ children }: AppContextProviderProps) => {
       }}
     >
       {children}
+      <Toaster />
     </AppContext.Provider>
   );
 };
