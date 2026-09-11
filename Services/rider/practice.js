@@ -79,6 +79,13 @@
 // console.log(vowelsCount(str));
 // console.log(countVowels);
 
-let arr = [1, 3, 4, 5, 5, 56]
+console.log(typeof NaN)
 
-console.log(arr.reduce(1,3,1))
+let arr = [10,20,30]
+arr[10] = 100
+console.log(arr)
+
+const abc = {a:100}
+const q = abc
+q.a = 200
+console.log(abc.a)
