@@ -169,3 +169,59 @@ export const updateRestaurant = TryCatch(
     res.json({ message: "Restaurant updated", restaurant });
   },
 );
+
+export const getNearByRestaurant = TryCatch(async (req, res) => {
+  const { latitude, longitude, radius = 5000, search = "" } = req.query;
+
+  if (!latitude || !longitude) {
+    return res.status(400).json({
+      message: "Latitude and Longitude are required",
+    });
+  }
+
+  const query: any = {
+    isVerified: true,
+  };
+
+  if (search && typeof search === "string") {
+    query.name = { $regex: search, $options: "i" };
+  }
+
+  const restaurants = await restaurantSchema.aggregate([
+    {
+      $geoNear: {
+        near: {
+          type: "Point",
+          coordinates: [Number(longitude), Number(latitude)],
+        },
+        distanceField: "distance",
+        maxDistance: Number(radius),
+        spherical: true,
+        query,
+      },
+    },
+    {
+      $sort: {
+        isOpen: -1,
+        distance: 1,
+      },
+    },
+    {
+      $addFields: {
+        distanceKm: {
+          $round: [{ $divide: ["$distance", 1000] }, 2],
+        },
+      },
+    },
+  ]);
+  res.json({
+    success: true,
+    count: restaurants.length,
+    restaurants,
+  });
+});
+
+export const fetchSingleRestaurant = TryCatch(async (req, res) => {
+  const restaurant = await restaurantSchema.findById(req.params.id);
+  res.json(restaurant);
+});

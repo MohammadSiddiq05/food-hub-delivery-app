@@ -79,13 +79,46 @@
 // console.log(vowelsCount(str));
 // console.log(countVowels);
 
-console.log(typeof NaN)
+// console.log(typeof NaN)
 
-let arr = [10,20,30]
-arr[10] = 100
-console.log(arr)
+// let arr = [10,20,30]
+// arr[10] = 100
+// console.log(arr)
 
-const abc = {a:100}
-const q = abc
-q.a = 200
-console.log(abc.a)
+// const abc = {a:100}
+// const q = abc
+// q.a = 200
+// console.log(abc.a)
+
+
+// console.log([] + [])
+// console.log({} + 10)
+
+// function x() {
+//     let a = 0;
+//     return () => a++
+// }
+
+// const y = x()
+// console.log(y(), y(), y())
+
+// const m = new Map()
+
+// m['a'] = 10
+// m.set("b", 20)
+
+// console.log(m.size)
+
+let arr = [1, 15, 32, 6, 8]
+
+// let sortedArr = arr.sort((a, b) => a - b).reverse()
+
+// console.log(sortedArr[1])
+
+for (let i = 0; i < arr.length; i++) {
+    for (let j = 0; j < arr.length; j++) {
+        if (arr[i] > arr[j])
+            arr[i] = arr[j]
+        arr[i]++
+    }
+}
