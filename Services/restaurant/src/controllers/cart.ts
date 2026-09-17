@@ -45,7 +45,7 @@ export const addToCart = TryCatch(async (req: AuthenticatedRequest, res) => {
       $inc: { quantity: 1 },
       $setOnInsert: { userId, restaurantId, itemId },
     },
-    { upset: true, new: true, setDefaultsOnInsert: true },
+    { upsert: true, new: true, setDefaultsOnInsert: true },
   );
 
   return res.json({

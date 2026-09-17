@@ -1,10 +1,11 @@
-import express from "express";
-import isAuth from "../middlewares/isAuth.js";
-import { addToCart, fetchMyCart } from "../controllers/cart.js";
+import express from "express"
+import isAuth from "../middlewares/isAuth.js"
+import { addToCart, fetchMyCart } from "../controllers/cart.js"
 
-const router = express.Router();
+const router = express.Router()
 
-router.post("/add", isAuth, addToCart);
-router.post("/all", isAuth, fetchMyCart);
+router.post("/add", isAuth, addToCart)
+router.get("/all", isAuth, fetchMyCart)
 
-export default router;
+
+export default router
